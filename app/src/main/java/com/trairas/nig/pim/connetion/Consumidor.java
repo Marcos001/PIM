@@ -58,8 +58,8 @@ public class Consumidor {
                             System.out.println(" [x] Received '" + message + "'");
 
                             System.out.println("Obtidos os dados");
-                            String finalMsg = msg;
-                            String finalIp = ip;
+                            final String finalMsg = msg;
+                            final String finalIp = ip;
 
                             new Thread(new Runnable() {
                                 @Override
