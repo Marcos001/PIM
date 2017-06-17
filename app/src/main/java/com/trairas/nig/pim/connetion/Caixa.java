@@ -6,7 +6,7 @@ package com.trairas.nig.pim.connetion;
 public class Caixa {
 
     public Caixa(){
-        new Consumidor();
+        //new Consumidor();
         //new Produtor();
     }
 

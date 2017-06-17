@@ -37,13 +37,18 @@ public class choose_image extends Fragment {
     Arquivo arq = new Arquivo();
     DCompactar zip = new DCompactar();
     Util u = new Util();
+    Consumidor cu;
 
 
-    public choose_image() {}
+    public choose_image()
+    {
+
+    }
 
     public void _setContext(Context c) {
 
         this.atividade = c;
+        cu = new Consumidor(atividade);
 
     }
 
@@ -103,7 +108,6 @@ public class choose_image extends Fragment {
             byte[] imagem = arq.converte_bytes(arq.ler_arquivo(picturePath));
 
             String name_file_zip = atividade.getCacheDir()+"/pim_imagem.zip";
-
 
             zip.compactar("pim_imagem.png", name_file_zip, imagem);
 

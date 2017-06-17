@@ -4,11 +4,18 @@ package com.trairas.nig.pim.connetion;
  * Created by mrv on 24/04/17.
  */
 
+import android.content.Context;
+
 import com.rabbitmq.client.*;
+import com.trairas.nig.pim.Util.Arquivo;
+import com.trairas.nig.pim.Util.DCompactar;
+
 import java.io.IOException;
 
 public class Consumidor {
 
+    Arquivo arq = new Arquivo();
+    DCompactar zip = new DCompactar();
 
 
     /*public Consumidor(){
@@ -82,9 +89,11 @@ public class Consumidor {
 
     }*/
 
-    public Consumidor(){
+    public Consumidor(final Context atividade){
 
-        final String QUEUE_NAME = "enviar";
+        final int PORT = Integer.getInteger("amqp.port", 5672);
+        final String QUEUE_NAME = "server_phone";
+
 
         new Thread(new Runnable() {
             @Override
@@ -94,37 +103,49 @@ public class Consumidor {
                 try{
                     ConnectionFactory factory = new ConnectionFactory();
                     factory.setHost("192.168.0.104");
+                    factory.setPort(PORT);
                     factory.setUsername("nig");
                     factory.setPassword("nig");
                     factory.setVirtualHost("/");
                     Connection connection = factory.newConnection();
                     Channel channel = connection.createChannel();
 
+
+
                     channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+
                     System.out.println(" [*] Aguardando mensagens. To exit press CTRL+C");
 
                     Consumer consumer = new DefaultConsumer(channel) {
                         @Override
-                        public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
+                        public void handleDelivery(String consumerTag,
+                                                   Envelope envelope,
+                                                   AMQP.BasicProperties properties,
+                                                   byte[] body)
                                 throws IOException {
 
-                            String message = new String(body, "UTF-8");
 
 
-                            System.out.println(" [x] Received '" + message + "'");
+                            //String message = new String(body, "UTF-8");
+                            arq.criar_arquivo(atividade.getCacheDir()+"/tmp.zip", body);
+
+                            zip.descompactar(atividade.getCacheDir()+"/tmp.zip", atividade);
+
+                            System.out.println(" [x] Received arquivo zip ");
 
                             System.out.println("Obtidos os dados");
 
 
                         }
                     };
-
+                    channel.basicConsume(QUEUE_NAME, true, consumer);
                 }catch (Exception erro){
-                    System.out.println("NAO FOI");
+                    System.out.println("NAO FOI - merda ao receber os arquivos > ");
                 }
 
             }
         }).start();
+
 
     }
 

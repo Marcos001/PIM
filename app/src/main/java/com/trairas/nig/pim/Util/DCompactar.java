@@ -1,6 +1,7 @@
 package com.trairas.nig.pim.Util;
 
 import android.content.Context;
+import android.os.Environment;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -133,7 +134,8 @@ public class DCompactar extends Util{
                 String name = entry.getName();
 
                 //cria o otput do arquivo
-                FileOutputStream saida = new FileOutputStream(atividade.getCacheDir()+"/"+name);
+                print("Descompactando arquivo = "+ name);
+                FileOutputStream saida = new FileOutputStream(Environment.getExternalStorageDirectory()+"/"+name);
 
                 int n;
 
