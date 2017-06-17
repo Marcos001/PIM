@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -17,6 +18,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.trairas.nig.pim.R;
+import com.trairas.nig.pim.Util.Arquivo;
+import com.trairas.nig.pim.Util.DCompactar;
+import com.trairas.nig.pim.Util.Util;
 
 
 public class choose_image extends Fragment {
@@ -28,6 +32,10 @@ public class choose_image extends Fragment {
     Button bt_send;
     ImageView imgv_send;
     View view;
+
+    Arquivo arq = new Arquivo();
+    DCompactar zip = new DCompactar();
+    Util u = new Util();
 
     public choose_image() {}
 
@@ -50,13 +58,14 @@ public class choose_image extends Fragment {
 
         imgv_send = (ImageView) view.findViewById(R.id.imgv_send);
 
-
+        // ação do botao
         bt_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent i = new Intent( Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
+                //inicia a galeria
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
 
 
@@ -84,6 +93,16 @@ public class choose_image extends Fragment {
             imgv_send.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 
             Log.v("-----> ", " Enviar imagem ao sevidor");
+
+            //enviar a imagem(s) zipada(s)
+
+
+            //convertendo a imagem em bytes
+            byte[] imagem = arq.converte_bytes(arq.ler_arquivo(picturePath));
+
+            zip.compactar("pim_imagem.png", Environment.getExternalStorageDirectory()+"/pim_imagem.zip", imagem);
+
+            u.print("salvando em : "+Environment.getExternalStorageDirectory());
 
         }
 

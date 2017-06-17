@@ -9,7 +9,7 @@ import java.util.zip.ZipOutputStream;
 /**
  * Created by nig on 01/06/17.
  */
-public class DCompactar extends util{
+public class DCompactar extends Util{
 
     public DCompactar(){
 
