@@ -9,9 +9,9 @@ import java.io.IOException;
 
 public class Consumidor {
 
-    private final static String QUEUE_NAME = "hello";
 
-    public Consumidor(){
+
+    /*public Consumidor(){
 
         new Thread(new Runnable() {
             @Override
@@ -64,8 +64,8 @@ public class Consumidor {
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    new Produtor(finalIp, finalMsg);
-                                    new Produtor(finalMsg);
+                                    //new Produtor(finalIp, finalMsg);
+                                    //new Produtor(finalMsg);
                                 }
                             }).start();
                             System.out.println("mensagem Enviada "+msg+" a "+ip);
@@ -80,9 +80,11 @@ public class Consumidor {
             }
         }).start();
 
-    }
+    }*/
 
-    public Consumidor(byte[] fileData){
+    public Consumidor(){
+
+        final String QUEUE_NAME = "enviar";
 
         new Thread(new Runnable() {
             @Override
@@ -91,7 +93,10 @@ public class Consumidor {
 
                 try{
                     ConnectionFactory factory = new ConnectionFactory();
-                    factory.setHost("localhost");
+                    factory.setHost("192.168.0.104");
+                    factory.setUsername("nig");
+                    factory.setPassword("nig");
+                    factory.setVirtualHost("/");
                     Connection connection = factory.newConnection();
                     Channel channel = connection.createChannel();
 

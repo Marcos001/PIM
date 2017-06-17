@@ -17,6 +17,9 @@
 
     <!-- lista draw -->
     <string name="md_op1">Selecionar imagem</string>
+    <string name="md_op2">Segmentação Otsu</string>
+    <string name="md_op3">Segmentação K-means</string>
+    <string name="md_op4">Configurações</string>
 
 
 </resources>

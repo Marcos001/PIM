@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -21,6 +21,7 @@ import com.trairas.nig.pim.R;
 import com.trairas.nig.pim.Util.Arquivo;
 import com.trairas.nig.pim.Util.DCompactar;
 import com.trairas.nig.pim.Util.Util;
+import com.trairas.nig.pim.connetion.*;
 
 
 public class choose_image extends Fragment {
@@ -36,6 +37,7 @@ public class choose_image extends Fragment {
     Arquivo arq = new Arquivo();
     DCompactar zip = new DCompactar();
     Util u = new Util();
+
 
     public choose_image() {}
 
@@ -100,9 +102,24 @@ public class choose_image extends Fragment {
             //convertendo a imagem em bytes
             byte[] imagem = arq.converte_bytes(arq.ler_arquivo(picturePath));
 
-            zip.compactar("pim_imagem.png", Environment.getExternalStorageDirectory()+"/pim_imagem.zip", imagem);
+            String name_file_zip = atividade.getCacheDir()+"/pim_imagem.zip";
 
-            u.print("salvando em : "+Environment.getExternalStorageDirectory());
+
+            zip.compactar("pim_imagem.png", name_file_zip, imagem);
+
+            u.print("salvando em : "+name_file_zip);
+
+            //converter o zip em bytes
+
+            byte[] bytes_zip = arq.converte_bytes(arq.ler_arquivo(name_file_zip));
+
+            // Add permission for othres threads
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
+            // send zip with photos
+            new Produtor(bytes_zip);
+            u.print("imagem enviada com sucesso!");
 
         }
 

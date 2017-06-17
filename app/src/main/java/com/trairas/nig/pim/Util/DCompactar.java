@@ -1,15 +1,20 @@
 package com.trairas.nig.pim.Util;
 
+import android.content.Context;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 /**
  * Created by nig on 01/06/17.
  */
 public class DCompactar extends Util{
+
+
 
     public DCompactar(){
 
@@ -18,19 +23,19 @@ public class DCompactar extends Util{
     public void compactar(String path_arquivo, String nome_arquivo_zip, byte[] conteudo_file){
 
         try{
-            print("p1");
+            print("0%");
             FileOutputStream file_output = new FileOutputStream(nome_arquivo_zip);
-            print("p2");
+            print("25%");
             ZipOutputStream inst_zip = new ZipOutputStream(file_output);
-            print("p3");
+            print("50%");
             inst_zip.putNextEntry(new ZipEntry(path_arquivo));
-            print("p4");
+            print("75%");
             inst_zip.write(conteudo_file);
 
             inst_zip.closeEntry();
             inst_zip.close();
 
-            print("zip criado com sucesso");
+            print("100% \nzip criado com sucesso!");
 
         }catch (Exception erro){
             print("erro ao compactar o arquivo");
@@ -113,7 +118,46 @@ public class DCompactar extends Util{
     }
 
 
-    public void descompactar(){
+    public void descompactar(String path_file_zip, Context atividade){
+
+        byte[] buffer = new byte[1024];
+
+        try{
+
+            ZipInputStream zinstream = new ZipInputStream(new FileInputStream(path_file_zip));
+
+            ZipEntry entry = zinstream.getNextEntry();
+
+            while(entry != null){
+                //pega o nome da entrada
+                String name = entry.getName();
+
+                //cria o otput do arquivo
+                FileOutputStream saida = new FileOutputStream(atividade.getCacheDir()+"/"+name);
+
+                int n;
+
+                //escreve no arquivo
+
+                while ((n = zinstream.read(buffer))> -1){
+                    saida.write(buffer, 0, n);
+                }
+
+                //fecha o arquivo
+
+                saida.close();
+
+                //fecha a entrada e tenta pegar a proxima
+
+                zinstream.closeEntry();
+                entry = zinstream.getNextEntry();
+
+            }
+
+        }catch (Exception erro){
+            print("Erro ao descompactar os arquivos > "+erro);
+        }
+
 
     }
 
