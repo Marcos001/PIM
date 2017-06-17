@@ -9,4 +9,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- my names -->
+    <string name="tv_selecionar">Selecione a imagem</string>
+    <string name="bt_selecionar">Selecionar</string>
+    <string name="bt_enviar">Enviar</string>
+
+    <!-- lista draw -->
+    <string name="md_op1">Selecionar imagem</string>
+
+
 </resources>

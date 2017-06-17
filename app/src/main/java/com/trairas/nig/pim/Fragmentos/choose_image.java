@@ -45,6 +45,8 @@ public class choose_image extends Fragment {
         view = inflater.inflate(R.layout.fragment_choose_image, container, false);
 
         bt_send = (Button) view.findViewById(R.id.bt_send);
+        bt_send.setText(R.string.bt_enviar);
+
 
         imgv_send = (ImageView) view.findViewById(R.id.imgv_send);
 
@@ -56,6 +58,7 @@ public class choose_image extends Fragment {
                 Intent i = new Intent( Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
+
 
             }
         });

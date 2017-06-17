@@ -19,7 +19,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginTop="16dp"
             android:padding="15dp"
-            android:text="Selecione a Imagem"
+            android:text="@string/tv_selecionar"
             android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -29,18 +29,20 @@
 
         <ImageView
             android:id="@+id/imgv_send"
-            android:layout_width="372dp"
-            android:layout_height="251dp"
+            android:layout_width="377dp"
+            android:layout_height="282dp"
             app:srcCompat="@drawable/eye"
-            android:layout_marginTop="37dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
             android:layout_marginLeft="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginRight="8dp"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.444" />
 
         <Button
             android:id="@+id/bt_send"
+            style="@style/my_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -49,10 +51,11 @@
             android:layout_marginTop="8dp"
             android:text="Selecionar"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgv_send"
-            app:layout_constraintVertical_bias="0.361" />
+            app:layout_constraintVertical_bias="0.211" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
