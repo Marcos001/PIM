@@ -13,7 +13,8 @@
     <!-- my names -->
     <string name="tv_selecionar">Selecione a imagem</string>
     <string name="bt_selecionar">Selecionar</string>
-    <string name="bt_enviar">Enviar</string>
+    <string name="bt_enviar">Send</string>
+    <string name="bt_select">Select</string>
 
     <!-- lista draw -->
     <string name="md_op1">Selecionar imagem</string>

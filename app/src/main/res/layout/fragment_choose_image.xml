@@ -42,7 +42,7 @@
 
         <Button
             android:id="@+id/bt_send"
-            style="@style/my_style"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -51,11 +51,28 @@
             android:layout_marginTop="8dp"
             android:text="Selecionar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintHorizontal_bias="0.21"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgv_send"
-            app:layout_constraintVertical_bias="0.211" />
+            app:layout_constraintVertical_bias="0.267" />
+
+        <Button
+            android:id="@+id/bt_select_send"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Selecionar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.685"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgv_send"
+            app:layout_constraintVertical_bias="0.267" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

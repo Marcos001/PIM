@@ -30,6 +30,7 @@ public class choose_image extends Fragment {
     private static int RESULT_LOAD_IMAGE = 1;
 
     Button bt_send;
+    Button bt_select_send;
     ImageView imgv_send;
     View view;
 
@@ -50,7 +51,11 @@ public class choose_image extends Fragment {
         view = inflater.inflate(R.layout.fragment_choose_image, container, false);
 
         bt_send = (Button) view.findViewById(R.id.bt_send);
-        bt_send.setText(R.string.bt_enviar);
+        bt_send.setText(R.string.bt_select);
+
+        bt_select_send = (Button) view.findViewById(R.id.bt_select_send);
+        bt_select_send.setText(R.string.bt_enviar);
+        bt_select_send.setEnabled(false);
 
 
         imgv_send = (ImageView) view.findViewById(R.id.imgv_send);
@@ -90,6 +95,8 @@ public class choose_image extends Fragment {
             imgv_send.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 
             Log.v("-----> ", " Enviar imagem ao sevidor");
+
+            bt_select_send.setEnabled(true);
 
             //enviar a imagem(s) zipada(s)
 

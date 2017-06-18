@@ -34,7 +34,7 @@ public class fg_md2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_dg_md3, container, false);
+        View view = inflater.inflate(R.layout.fragment_fg_md2, container, false);
 
         ImageView img;
 
