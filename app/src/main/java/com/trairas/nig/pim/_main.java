@@ -99,11 +99,11 @@ public class _main extends AppCompatActivity implements NavigationView.OnNavigat
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            frag.beginTransaction().replace(R.id.conteudo, new choose_image()).commit();
         } else if (id == R.id.nav_gallery) {
-
+            frag.beginTransaction().replace(R.id.conteudo, new fg_md2()).commit();
         } else if (id == R.id.nav_slideshow) {
-
+            frag.beginTransaction().replace(R.id.conteudo, new dg_md3()).commit();
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
