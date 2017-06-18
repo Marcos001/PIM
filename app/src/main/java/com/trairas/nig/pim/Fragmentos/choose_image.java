@@ -60,8 +60,10 @@ public class choose_image extends Fragment {
         bt_select_send.setText(R.string.bt_enviar);
         bt_select_send.setEnabled(false);
 
-
         imgv_send = (ImageView) view.findViewById(R.id.imgv_send);
+
+        //cu = new Consumidor(getContext(), getContext().getCacheDir()+"");
+        cu = new Consumidor(getActivity(), getContext(), Environment.getExternalStorageDirectory()+"");
 
         // ação do botao
         bt_send.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +86,7 @@ public class choose_image extends Fragment {
             }
         });
 
+
         return view;
     }
 
@@ -91,7 +94,6 @@ public class choose_image extends Fragment {
         //convertendo a imagem em bytes
 
         cu.configDialog(getContext());
-        cu.mostar_progresso();
 
         u.print("Caminho em enviar = "+caminho_img);
 
@@ -141,8 +143,7 @@ public class choose_image extends Fragment {
 
             bt_select_send.setEnabled(true);
 
-            //cu = new Consumidor(getContext(), getContext().getCacheDir()+"");
-            cu = new Consumidor(getContext(), Environment.getExternalStorageDirectory()+"");
+
 
             //-----------------------------------------------------------------------///////
 
