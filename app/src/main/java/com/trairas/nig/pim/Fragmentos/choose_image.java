@@ -1,6 +1,7 @@
 package com.trairas.nig.pim.Fragmentos;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
@@ -29,6 +30,7 @@ public class choose_image extends Fragment {
 
     private static int RESULT_LOAD_IMAGE = 1;
     private String caminho_img = "";
+    ProgressDialog progress;
 
     Button bt_send;
     Button bt_select_send;
@@ -87,6 +89,9 @@ public class choose_image extends Fragment {
 
     private void enviar(){
         //convertendo a imagem em bytes
+
+        cu.configDialog(getContext());
+        cu.mostar_progresso();
 
         u.print("Caminho em enviar = "+caminho_img);
 

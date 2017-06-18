@@ -4,6 +4,7 @@ package com.trairas.nig.pim.connetion;
  * Created by mrv on 24/04/17.
  */
 
+import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.rabbitmq.client.*;
@@ -16,7 +17,24 @@ public class Consumidor {
 
     Arquivo arq = new Arquivo();
     DCompactar zip = new DCompactar();
+    ProgressDialog progress;
 
+    public void configDialog(Context contexto){
+        progress = new ProgressDialog(contexto);
+        progress.setTitle("Aguarde");
+        progress.setMessage("Segmentando no Servidor");
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.setIndeterminate(true);
+        progress.setCanceledOnTouchOutside(false);
+    }
+
+    public void mostar_progresso(){
+        progress.show();
+    }
+
+    public void parar_progresso(){
+        progress.dismiss();
+    }
 
     /*public Consumidor(){
 
@@ -132,6 +150,7 @@ public class Consumidor {
                             zip.descompactar(atividade.getCacheDir()+"/tmp.zip", path_saida);
 
                             System.out.println(" [x] Received arquivo zip ");
+                            parar_progresso();
 
                             System.out.println("Obtidos os dados");
 
