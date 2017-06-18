@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,9 +36,10 @@ public class fg_md2 extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_dg_md3, container, false);
 
-        ImageView img = (ImageView) view.findViewById(R.id.imgv_otsu);
+        ImageView img;
 
-        String path_img = getContext().getCacheDir()+"/otsu.png";
+        //String path_img = getContext().getCacheDir()+"/otsu.png";
+        String path_img = Environment.getExternalStorageDirectory()+"/otsu.png";
 
         u.print("Arquivo = "+path_img);
 
@@ -45,12 +47,10 @@ public class fg_md2 extends Fragment {
 
         try{
             if(imgFile.exists()){
-
-
+                u.print("arquivo existe");
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-
+                img = (ImageView) view.findViewById(R.id.imgv_otsu);
                 img.setImageBitmap(myBitmap);
-                u.print("arquivo nao existe");
             }
             else{
                 u.print("imagem otsu.png não existe");

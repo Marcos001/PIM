@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +38,8 @@ public class dg_md3 extends Fragment {
 
         ImageView img;
 
-        String path_img = getContext().getCacheDir()+"/Kmeans.png";
+        //String path_img = getContext().getCacheDir()+"/Kmeans.png";
+        String path_img = Environment.getExternalStorageDirectory()+"/Kmeans.png";
 
         u.print("Arquivo = "+path_img);
 

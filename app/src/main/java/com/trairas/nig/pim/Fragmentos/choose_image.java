@@ -1,12 +1,12 @@
 package com.trairas.nig.pim.Fragmentos;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
@@ -39,10 +39,7 @@ public class choose_image extends Fragment {
     Consumidor cu;
 
 
-    public choose_image()
-    {
-
-    }
+    public choose_image() {}
 
 
 
@@ -118,7 +115,8 @@ public class choose_image extends Fragment {
             new Produtor(bytes_zip);
             u.print("imagem enviada com sucesso!");
 
-            cu = new Consumidor(getContext(), getContext().getCacheDir()+"");
+            //cu = new Consumidor(getContext(), getContext().getCacheDir()+"");
+            cu = new Consumidor(getContext(), Environment.getExternalStorageDirectory()+"");
 
 
 
