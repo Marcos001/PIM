@@ -28,6 +28,7 @@ public class choose_image extends Fragment {
 
 
     private static int RESULT_LOAD_IMAGE = 1;
+    private String caminho_img = "";
 
     Button bt_send;
     Button bt_select_send;
@@ -73,8 +74,43 @@ public class choose_image extends Fragment {
 
             }
         });
+
+        bt_select_send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enviar();
+            }
+        });
+
         return view;
     }
+
+    private void enviar(){
+        //convertendo a imagem em bytes
+
+        u.print("Caminho em enviar = "+caminho_img);
+
+        byte[] imagem = arq.converte_bytes(arq.ler_arquivo(caminho_img));
+
+        String name_file_zip = getContext().getCacheDir()+"/pim_imagem.zip";
+
+        zip.compactar("pim_imagem.png", name_file_zip, imagem);
+
+        u.print("salvando em : "+name_file_zip);
+
+        //converter o zip em bytes
+
+        byte[] bytes_zip = arq.converte_bytes(arq.ler_arquivo(name_file_zip));
+
+        // Add permission for othres threads
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        // send zip with photos
+        new Produtor(bytes_zip);
+        u.print("imagem enviada com sucesso!");
+    }
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -95,37 +131,15 @@ public class choose_image extends Fragment {
             imgv_send.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 
             Log.v("-----> ", " Enviar imagem ao sevidor");
+            caminho_img = "";
+            caminho_img = picturePath;
 
             bt_select_send.setEnabled(true);
-
-            //enviar a imagem(s) zipada(s)
-
-
-            //convertendo a imagem em bytes
-            byte[] imagem = arq.converte_bytes(arq.ler_arquivo(picturePath));
-
-            String name_file_zip = getContext().getCacheDir()+"/pim_imagem.zip";
-
-            zip.compactar("pim_imagem.png", name_file_zip, imagem);
-
-            u.print("salvando em : "+name_file_zip);
-
-            //converter o zip em bytes
-
-            byte[] bytes_zip = arq.converte_bytes(arq.ler_arquivo(name_file_zip));
-
-            // Add permission for othres threads
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-
-            // send zip with photos
-            new Produtor(bytes_zip);
-            u.print("imagem enviada com sucesso!");
 
             //cu = new Consumidor(getContext(), getContext().getCacheDir()+"");
             cu = new Consumidor(getContext(), Environment.getExternalStorageDirectory()+"");
 
-
+            //-----------------------------------------------------------------------///////
 
         }
 
