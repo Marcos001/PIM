@@ -134,8 +134,9 @@ public class DCompactar extends Util{
                 String name = entry.getName();
 
                 //cria o otput do arquivo
-                print("Descompactando arquivo = "+ name);
-                FileOutputStream saida = new FileOutputStream(path_saida+"/"+name);
+                String caminho = path_saida+"/"+name;
+                print("Descompactando arquivo = "+ name +"\n em "+caminho);
+                FileOutputStream saida = new FileOutputStream(caminho);
 
                 int n;
 

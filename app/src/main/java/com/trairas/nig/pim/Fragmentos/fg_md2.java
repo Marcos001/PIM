@@ -37,10 +37,15 @@ public class fg_md2 extends Fragment {
 
         ImageView img = (ImageView) view.findViewById(R.id.imgv_otsu);
 
-        File imgFile = new  File(getContext().getCacheDir()+"/otsu.png");
+        String path_img = getContext().getCacheDir()+"/otsu.png";
+
+        u.print("Arquivo = "+path_img);
+
+        File imgFile = new  File(path_img);
 
         try{
             if(imgFile.exists()){
+
 
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
 

@@ -32,19 +32,19 @@
 
         <ImageView
             android:id="@+id/imgv_otsu"
-            android:layout_width="365dp"
-            android:layout_height="342dp"
+            android:layout_width="356dp"
+            android:layout_height="326dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:padding="50dp"
+            android:layout_marginTop="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.666"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:layout_constraintVertical_bias="0.252"
-            app:srcCompat="@drawable/exclamacao" />
+            app:layout_constraintVertical_bias="0.027"
+            app:srcCompat="@android:color/transparent" />
+
+
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

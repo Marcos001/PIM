@@ -35,27 +35,32 @@ public class dg_md3 extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_dg_md3, container, false);
 
-        ImageView img = (ImageView) view.findViewById(R.id.imgv_kmeans);
+        ImageView img;
 
+        String path_img = getContext().getCacheDir()+"/Kmeans.png";
 
-        File imgFile = new  File(getContext().getCacheDir()+"/kmeans.png");
+        u.print("Arquivo = "+path_img);
+
+        File imgFile = new File(path_img);
 
 
         try{
+
             if(imgFile.exists()){
 
                 u.print("Arquivo existe");
 
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-
+                img = (ImageView) view.findViewById(R.id.imgv_kmeans);
                 img.setImageBitmap(myBitmap);
             }
             else{
                 u.print("imagem kmeans.png não existe");
             }
         }
+
         catch (Exception erro){
-            u.print("Erro ao adicionar a imagem no imageView "+ erro);
+            u.print("Erro ao adicionar a imagem no imageView Erro > \n"+ erro);
         }
 
 
