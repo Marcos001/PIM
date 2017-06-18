@@ -50,8 +50,6 @@ public class _main extends AppCompatActivity implements NavigationView.OnNavigat
         if (savedInstanceState == null) {
             choose_image mp = new choose_image();
 
-            mp._setContext(getApplicationContext());
-
             FragmentTransaction ft = frag.beginTransaction();
             ft.add(R.id.conteudo, mp);
             ft.commit();
@@ -96,6 +94,7 @@ public class _main extends AppCompatActivity implements NavigationView.OnNavigat
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {

@@ -119,7 +119,7 @@ public class DCompactar extends Util{
     }
 
 
-    public void descompactar(String path_file_zip, Context atividade){
+    public void descompactar(String path_file_zip, String path_saida){
 
         byte[] buffer = new byte[1024];
 
@@ -135,7 +135,7 @@ public class DCompactar extends Util{
 
                 //cria o otput do arquivo
                 print("Descompactando arquivo = "+ name);
-                FileOutputStream saida = new FileOutputStream(Environment.getExternalStorageDirectory()+"/"+name);
+                FileOutputStream saida = new FileOutputStream(path_saida+"/"+name);
 
                 int n;
 

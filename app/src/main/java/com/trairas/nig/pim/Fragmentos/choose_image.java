@@ -28,7 +28,6 @@ public class choose_image extends Fragment {
 
 
     private static int RESULT_LOAD_IMAGE = 1;
-    Context atividade;
 
     Button bt_send;
     ImageView imgv_send;
@@ -45,12 +44,6 @@ public class choose_image extends Fragment {
 
     }
 
-    public void _setContext(Context c) {
-
-        this.atividade = c;
-        cu = new Consumidor(atividade);
-
-    }
 
 
     @Override
@@ -88,7 +81,7 @@ public class choose_image extends Fragment {
             Uri selectedImage = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
-            Cursor cursor = atividade.getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+            Cursor cursor = getContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
             cursor.moveToFirst();
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
@@ -107,7 +100,7 @@ public class choose_image extends Fragment {
             //convertendo a imagem em bytes
             byte[] imagem = arq.converte_bytes(arq.ler_arquivo(picturePath));
 
-            String name_file_zip = atividade.getCacheDir()+"/pim_imagem.zip";
+            String name_file_zip = getContext().getCacheDir()+"/pim_imagem.zip";
 
             zip.compactar("pim_imagem.png", name_file_zip, imagem);
 
@@ -124,6 +117,10 @@ public class choose_image extends Fragment {
             // send zip with photos
             new Produtor(bytes_zip);
             u.print("imagem enviada com sucesso!");
+
+            cu = new Consumidor(getContext(), getContext().getCacheDir()+"");
+
+
 
         }
 

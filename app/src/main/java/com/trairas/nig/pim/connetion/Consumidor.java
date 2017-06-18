@@ -89,7 +89,7 @@ public class Consumidor {
 
     }*/
 
-    public Consumidor(final Context atividade){
+    public Consumidor(final Context atividade, final String path_saida){
 
         final int PORT = Integer.getInteger("amqp.port", 5672);
         final String QUEUE_NAME = "server_phone";
@@ -129,7 +129,7 @@ public class Consumidor {
                             //String message = new String(body, "UTF-8");
                             arq.criar_arquivo(atividade.getCacheDir()+"/tmp.zip", body);
 
-                            zip.descompactar(atividade.getCacheDir()+"/tmp.zip", atividade);
+                            zip.descompactar(atividade.getCacheDir()+"/tmp.zip", path_saida);
 
                             System.out.println(" [x] Received arquivo zip ");
 
@@ -148,8 +148,6 @@ public class Consumidor {
 
 
     }
-
-
 
 
 }
