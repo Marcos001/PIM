@@ -16,8 +16,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.trairas.nig.pim.R;
 import com.trairas.nig.pim.Util.Arquivo;
@@ -26,6 +28,7 @@ import com.trairas.nig.pim.Util.Util;
 import com.trairas.nig.pim.connetion.*;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
 
 public class choose_image extends Fragment {
@@ -45,6 +48,7 @@ public class choose_image extends Fragment {
     DCompactar zip = new DCompactar();
     Util u = new Util();
     Consumidor cu;
+    Spinner get_img;
 
 
 
@@ -62,6 +66,20 @@ public class choose_image extends Fragment {
         bt_select_send.setText(R.string.bt_enviar);
         bt_select_send.setEnabled(false);
 
+        //dados do pinner
+
+        final ArrayList<String> pal = new ArrayList<>();
+        pal.add("Selecionar Imagem da Galeria");
+        pal.add("Selecionar Imagem da Camera");
+        ArrayAdapter opcao_selecao = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, pal);
+
+        //configurando spinner
+        get_img = (Spinner) view.findViewById(R.id.spinner_get_img);
+        get_img.setAdapter(opcao_selecao);
+
+
+
+
         imgv_send = (ImageView) view.findViewById(R.id.imgv_send);
 
         //cu = new Consumidor(getContext(), getContext().getCacheDir()+"");
@@ -72,15 +90,17 @@ public class choose_image extends Fragment {
             @Override
             public void onClick(View v) {
 
-                // Galeria
+                if(get_img.getSelectedItemPosition() == 0){
+                    u.print("Selecionar da galeria");
+                    Intent i = new Intent( Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(i, RESULT_LOAD_IMAGE);
+                }
 
-                //Intent i = new Intent( Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                //inicia a galeria
-                //startActivityForResult(i, RESULT_LOAD_IMAGE);
-
-                // Camera
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, CAMERA_REQUEST);
+                if(get_img.getSelectedItemPosition() == 1){
+                    u.print("Selecionar da camera");
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, CAMERA_REQUEST);
+                }
 
             }
         });
@@ -142,14 +162,13 @@ public class choose_image extends Fragment {
 
             //salvar a imagem em Path
             String path = Environment.getExternalStorageDirectory()+"";
-            String name_img = String.valueOf(System.currentTimeMillis()) + ".jpg";
+            String name_img = String.valueOf(System.currentTimeMillis()) + ".png";
             u.print("print do diretório de pictures = ["+path+"]");
             u.print("nome da foto = ["+name_img+"]");
             caminho_img = "";
             caminho_img = path+"/"+name_img;
             arq.criar_arquivo(caminho_img, byteArray);
             u.print("Arquivo criado com sucesso em "+caminho_img+"!\n");
-
 
 
             // convert byte array to Bitmap
