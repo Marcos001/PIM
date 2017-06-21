@@ -60,7 +60,6 @@ public class choose_image extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
         view = inflater.inflate(R.layout.fragment_choose_image, container, false);
 
         bt_send = (Button) view.findViewById(R.id.bt_send);
@@ -146,6 +145,7 @@ public class choose_image extends Fragment {
         // send zip with photos
         new Produtor(bytes_zip);
         u.print("imagem enviada com sucesso!");
+
     }
 
 
@@ -173,7 +173,6 @@ public class choose_image extends Fragment {
             caminho_img = path+"/"+name_img;
             arq.criar_arquivo(caminho_img, byteArray);
             u.print("Arquivo criado com sucesso em "+caminho_img+"!\n");
-
 
             // convert byte array to Bitmap
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
