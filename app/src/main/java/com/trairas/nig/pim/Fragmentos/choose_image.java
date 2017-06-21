@@ -2,15 +2,10 @@ package com.trairas.nig.pim.Fragmentos;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ContentProvider;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -77,14 +72,13 @@ public class choose_image extends Fragment {
             @Override
             public void onClick(View v) {
 
+                // Galeria
+
                 //Intent i = new Intent( Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 //inicia a galeria
                 //startActivityForResult(i, RESULT_LOAD_IMAGE);
 
-                String fileName = "temp.jpg";
-                ContentValues values = new ContentValues();
-                values.put(MediaStore.Images.Media.TITLE, fileName);
-                ContentProvider mCapturedImageURI = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                // Camera
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, CAMERA_REQUEST);
 
@@ -142,10 +136,23 @@ public class choose_image extends Fragment {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
             bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+
+            //array de bytes da imagem
             byte[] byteArray = stream.toByteArray();
 
-            // convert byte array to Bitmap
+            //salvar a imagem em Path
+            String path = Environment.getExternalStorageDirectory()+"";
+            String name_img = String.valueOf(System.currentTimeMillis()) + ".jpg";
+            u.print("print do diretório de pictures = ["+path+"]");
+            u.print("nome da foto = ["+name_img+"]");
+            caminho_img = "";
+            caminho_img = path+"/"+name_img;
+            arq.criar_arquivo(caminho_img, byteArray);
+            u.print("Arquivo criado com sucesso em "+caminho_img+"!\n");
 
+
+
+            // convert byte array to Bitmap
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
 
             //Bitmap photo = (Bitmap) data.getExtras().get("data");
