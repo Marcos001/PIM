@@ -2,9 +2,15 @@ package com.trairas.nig.pim.Fragmentos;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentProvider;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,6 +30,8 @@ import com.trairas.nig.pim.Util.DCompactar;
 import com.trairas.nig.pim.Util.Util;
 import com.trairas.nig.pim.connetion.*;
 
+import java.io.ByteArrayOutputStream;
+
 
 public class choose_image extends Fragment {
 
@@ -31,6 +39,7 @@ public class choose_image extends Fragment {
     private static int RESULT_LOAD_IMAGE = 1;
     private String caminho_img = "";
     ProgressDialog progress;
+    private static final int CAMERA_REQUEST = 1888;
 
     Button bt_send;
     Button bt_select_send;
@@ -42,8 +51,6 @@ public class choose_image extends Fragment {
     Util u = new Util();
     Consumidor cu;
 
-
-    public choose_image() {}
 
 
 
@@ -70,11 +77,16 @@ public class choose_image extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent( Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
+                //Intent i = new Intent( Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 //inicia a galeria
-                startActivityForResult(i, RESULT_LOAD_IMAGE);
+                //startActivityForResult(i, RESULT_LOAD_IMAGE);
 
+                String fileName = "temp.jpg";
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media.TITLE, fileName);
+                ContentProvider mCapturedImageURI = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, CAMERA_REQUEST);
 
             }
         });
@@ -119,11 +131,34 @@ public class choose_image extends Fragment {
     }
 
 
+
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+
+            Bitmap bmp = (Bitmap) data.getExtras().get("data");
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] byteArray = stream.toByteArray();
+
+            // convert byte array to Bitmap
+
+            Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+
+            //Bitmap photo = (Bitmap) data.getExtras().get("data");
+            imgv_send.setImageBitmap(bitmap);
+
+
+
+        }
+
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == Activity.RESULT_OK && null != data) {
+
             Uri selectedImage = data.getData();
+
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
             Cursor cursor = getContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);

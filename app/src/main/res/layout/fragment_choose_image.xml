@@ -51,11 +51,11 @@
             android:layout_marginTop="8dp"
             android:text="Selecionar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.21"
+            app:layout_constraintHorizontal_bias="0.233"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgv_send"
-            app:layout_constraintVertical_bias="0.267" />
+            app:layout_constraintVertical_bias="0.384" />
 
         <Button
             android:id="@+id/bt_select_send"
@@ -68,11 +68,11 @@
             android:layout_marginTop="8dp"
             android:text="Selecionar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.685"
+            app:layout_constraintHorizontal_bias="0.832"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgv_send"
-            app:layout_constraintVertical_bias="0.267" />
+            app:layout_constraintVertical_bias="0.384" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

@@ -5,7 +5,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Sobre</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -13,14 +13,18 @@
     <!-- my names -->
     <string name="tv_selecionar">Selecione a imagem</string>
     <string name="bt_selecionar">Selecionar</string>
-    <string name="bt_enviar">Send</string>
-    <string name="bt_select">Select</string>
+    <string name="bt_enviar">Enviar</string>
+    <string name="bt_select">Selecionar</string>
+    <string name="srb_app">Predicação de Imagens Por Segmentação</string>
 
     <!-- lista draw -->
     <string name="md_op1">Selecionar imagem</string>
     <string name="md_op2">Segmentação Otsu</string>
     <string name="md_op3">Segmentação K-means</string>
-    <string name="md_op4">Configurações</string>
+    <string name="md_op4">Tempo de Segmentação</string>
+    <string name="md_cat1">Configurações</string>
+    <string name="md_op5">Servidor</string>
+    <string name="md_op6">Usuário</string>
 
 
 </resources>

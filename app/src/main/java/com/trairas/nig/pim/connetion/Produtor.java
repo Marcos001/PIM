@@ -14,7 +14,7 @@ public class Produtor extends Util {
     private final static String QUEUE_NAME = "phone_server"; //"hello"
     static final int PORT = Integer.getInteger("amqp.port", 5672);
 
-    static final String HOST = System.getProperty("amqp.host", "192.168.0.104");
+    static final String HOST = System.getProperty("amqp.host", "192.168.0.102");
     static final String EXCHANGE = System.getProperty("amqp.exchange", "systemExchange");
     static final String ENCODING = "UTF-8";
 
