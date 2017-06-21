@@ -40,34 +40,73 @@ public class dg_md3 extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_dg_md3, container, false);
 
-        ImageView img;
+        //---------------------------------------------------------------------------:
 
-        //String path_img = getContext().getCacheDir()+"/Kmeans.png";
+        ImageView img;
+        ImageView img_seg;
+        ImageView img_sobreposta;
+
+        //vimgv_seg_otsu
+
+        String path_img_normal = ler_name_img();
         String path_img = Environment.getExternalStorageDirectory()+"/Kmeans.png";
+        String path_img_sobreposta = Environment.getExternalStorageDirectory()+"/sb_kmeans.png";
 
         u.print("Arquivo = "+path_img);
 
-        File imgFile = new File(path_img);
+        File imgFile_normal = new  File(path_img_normal);
+        File imgFile = new  File(path_img);
+        File imgFile_sb = new  File(path_img_sobreposta);
 
 
         try{
+            if(imgFile_sb.exists()){
+                u.print("arquivo existe");
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile_sb.getAbsolutePath());
+                img_sobreposta = (ImageView) view.findViewById(R.id.imgv_sb_kmeans);
+                img_sobreposta.setImageBitmap(myBitmap);
+            }
+            else{
+                u.print("imagem otsu.png não existe");
+            }
+        }
+        catch (Exception erro){
+            u.print("Erro ao adicionar a imagem no imageView "+ erro);
+        }
 
+
+        try{
+            if(imgFile_normal.exists()){
+                u.print("arquivo existe");
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile_normal.getAbsolutePath());
+                img_seg = (ImageView) view.findViewById(R.id.imgv_kmeans);
+                img_seg.setImageBitmap(myBitmap);
+            }
+            else{
+                u.print("imagem otsu.png não existe");
+            }
+        }
+        catch (Exception erro){
+            u.print("Erro ao adicionar a imagem no imageView "+ erro);
+        }
+
+        try{
             if(imgFile.exists()){
-
-                u.print("Arquivo existe");
-
+                u.print("arquivo existe");
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                img = (ImageView) view.findViewById(R.id.imgv_kmeans);
+                img = (ImageView) view.findViewById(R.id.imgv_seg_kmeans);
                 img.setImageBitmap(myBitmap);
             }
             else{
-                u.print("imagem kmeans.png não existe");
+                u.print("imagem otsu.png não existe");
             }
         }
-
         catch (Exception erro){
-            u.print("Erro ao adicionar a imagem no imageView Erro > \n"+ erro);
+            u.print("Erro ao adicionar a imagem no imageView "+ erro);
         }
+
+        //---------------------------------------------------------------------------:
+
 
 
         return view;

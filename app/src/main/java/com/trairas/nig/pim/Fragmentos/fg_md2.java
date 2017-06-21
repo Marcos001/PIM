@@ -47,8 +47,6 @@ public class fg_md2 extends Fragment {
         //vimgv_seg_otsu
 
         String path_img_normal = ler_name_img();
-
-        //String path_img = getContext().getCacheDir()+"/otsu.png";
         String path_img = Environment.getExternalStorageDirectory()+"/otsu.png";
         String path_img_sobreposta = Environment.getExternalStorageDirectory()+"/sb_otsu.png";
 
