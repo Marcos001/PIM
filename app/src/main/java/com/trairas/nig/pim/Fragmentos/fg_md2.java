@@ -42,6 +42,7 @@ public class fg_md2 extends Fragment {
 
         ImageView img;
         ImageView img_seg;
+        ImageView img_sobreposta;
 
         //vimgv_seg_otsu
 
@@ -49,18 +50,37 @@ public class fg_md2 extends Fragment {
 
         //String path_img = getContext().getCacheDir()+"/otsu.png";
         String path_img = Environment.getExternalStorageDirectory()+"/otsu.png";
+        String path_img_sobreposta = Environment.getExternalStorageDirectory()+"/sb_otsu.png";
 
         u.print("Arquivo = "+path_img);
 
         File imgFile_normal = new  File(path_img_normal);
         File imgFile = new  File(path_img);
+        File imgFile_sb = new  File(path_img_sobreposta);
+
+
+        try{
+            if(imgFile_sb.exists()){
+                u.print("arquivo existe");
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile_sb.getAbsolutePath());
+                img_sobreposta = (ImageView) view.findViewById(R.id.imgv_sobreposta_otsu);
+                img_sobreposta.setImageBitmap(myBitmap);
+            }
+            else{
+                u.print("imagem otsu.png não existe");
+            }
+        }
+        catch (Exception erro){
+            u.print("Erro ao adicionar a imagem no imageView "+ erro);
+        }
+
 
         try{
             if(imgFile_normal.exists()){
                 u.print("arquivo existe");
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile_normal.getAbsolutePath());
-                img = (ImageView) view.findViewById(R.id.imgv_otsu);
-                img.setImageBitmap(myBitmap);
+                img_seg = (ImageView) view.findViewById(R.id.imgv_otsu);
+                img_seg.setImageBitmap(myBitmap);
             }
             else{
                 u.print("imagem otsu.png não existe");
