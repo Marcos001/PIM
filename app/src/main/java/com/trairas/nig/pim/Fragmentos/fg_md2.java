@@ -41,18 +41,24 @@ public class fg_md2 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fg_md2, container, false);
 
         ImageView img;
+        ImageView img_seg;
+
+        //vimgv_seg_otsu
+
+        String path_img_normal = ler_name_img();
 
         //String path_img = getContext().getCacheDir()+"/otsu.png";
         String path_img = Environment.getExternalStorageDirectory()+"/otsu.png";
 
         u.print("Arquivo = "+path_img);
 
+        File imgFile_normal = new  File(path_img_normal);
         File imgFile = new  File(path_img);
 
         try{
-            if(imgFile.exists()){
+            if(imgFile_normal.exists()){
                 u.print("arquivo existe");
-                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile_normal.getAbsolutePath());
                 img = (ImageView) view.findViewById(R.id.imgv_otsu);
                 img.setImageBitmap(myBitmap);
             }
@@ -63,6 +69,22 @@ public class fg_md2 extends Fragment {
         catch (Exception erro){
             u.print("Erro ao adicionar a imagem no imageView "+ erro);
         }
+
+        try{
+            if(imgFile.exists()){
+                u.print("arquivo existe");
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                img = (ImageView) view.findViewById(R.id.imgv_seg_otsu);
+                img.setImageBitmap(myBitmap);
+            }
+            else{
+                u.print("imagem otsu.png não existe");
+            }
+        }
+        catch (Exception erro){
+            u.print("Erro ao adicionar a imagem no imageView "+ erro);
+        }
+
 
         return view;
     }
