@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.trairas.nig.pim.R;
+import com.trairas.nig.pim.Util.OperArquivos;
 import com.trairas.nig.pim.Util.Util;
 import com.trairas.nig.pim.connetion.Consumidor;
 
@@ -22,6 +23,9 @@ import java.io.File;
 public class fg_md2 extends Fragment {
 
     Util u = new Util();
+    OperArquivos opr = new OperArquivos();
+
+    private static String FILE_IMG = "name_img.txt";
 
 
     public fg_md2() {
@@ -61,6 +65,10 @@ public class fg_md2 extends Fragment {
         }
 
         return view;
+    }
+
+    private String ler_name_img(){
+        return opr.ler(getContext(), FILE_IMG);
     }
 
 

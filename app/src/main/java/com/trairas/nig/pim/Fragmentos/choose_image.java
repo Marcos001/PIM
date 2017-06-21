@@ -24,6 +24,7 @@ import android.widget.Spinner;
 import com.trairas.nig.pim.R;
 import com.trairas.nig.pim.Util.Arquivo;
 import com.trairas.nig.pim.Util.DCompactar;
+import com.trairas.nig.pim.Util.OperArquivos;
 import com.trairas.nig.pim.Util.Util;
 import com.trairas.nig.pim.connetion.*;
 
@@ -35,6 +36,7 @@ public class choose_image extends Fragment {
 
 
     private static int RESULT_LOAD_IMAGE = 1;
+    private static String FILE_IMG = "name_img.txt";
     private String caminho_img = "";
     ProgressDialog progress;
     private static final int CAMERA_REQUEST = 1888;
@@ -43,12 +45,14 @@ public class choose_image extends Fragment {
     Button bt_select_send;
     ImageView imgv_send;
     View view;
+    Spinner get_img;
 
     Arquivo arq = new Arquivo();
     DCompactar zip = new DCompactar();
     Util u = new Util();
     Consumidor cu;
-    Spinner get_img;
+    OperArquivos opr = new OperArquivos();
+
 
 
 
@@ -177,6 +181,12 @@ public class choose_image extends Fragment {
             //Bitmap photo = (Bitmap) data.getExtras().get("data");
             imgv_send.setImageBitmap(bitmap);
 
+            u.print("Salvando nome da imagem no arquivo");
+            salve_name_img(caminho_img);
+
+            bt_select_send.setEnabled(true);
+
+
 
 
         }
@@ -202,6 +212,9 @@ public class choose_image extends Fragment {
             caminho_img = "";
             caminho_img = picturePath;
 
+            u.print("Salvando nome da imagem no arquivo");
+            salve_name_img(caminho_img);
+
             bt_select_send.setEnabled(true);
 
 
@@ -210,9 +223,11 @@ public class choose_image extends Fragment {
 
         }
 
+    }
 
-}
-
+    private void salve_name_img(String path_img){
+        opr.salvar(path_img, getContext(), FILE_IMG);
+    }
 
 
 }

@@ -58,7 +58,7 @@ public class Consumidor {
 
                 try{
                     ConnectionFactory factory = new ConnectionFactory();
-                    factory.setHost("192.168.0.102");
+                    factory.setHost("192.168.0.109");
                     factory.setPort(PORT);
                     factory.setUsername("nig");
                     factory.setPassword("nig");
