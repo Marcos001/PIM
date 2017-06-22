@@ -3,6 +3,7 @@ package com.trairas.nig.pim.connetion;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.trairas.nig.pim.Util.OperArquivos;
 import com.trairas.nig.pim.Util.Util;
 
 
@@ -13,15 +14,15 @@ public class Produtor extends Util {
 
     private final static String QUEUE_NAME = "phone_server"; //"hello"
     static final int PORT = Integer.getInteger("amqp.port", 5672);
-
-    static final String HOST = System.getProperty("amqp.host", "192.168.0.109");
     static final String EXCHANGE = System.getProperty("amqp.exchange", "systemExchange");
     static final String ENCODING = "UTF-8";
 
     Connection connection;
 
-    public Produtor(byte[] fileData){
 
+    public Produtor(byte[] fileData, String ip_server){
+
+        final String HOST = System.getProperty("amqp.host", ip_server);
 
         try{
 

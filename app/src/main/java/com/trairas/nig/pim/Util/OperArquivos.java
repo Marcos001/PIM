@@ -69,7 +69,6 @@ public class OperArquivos {
                 arquivo_ler.read(dadosBytesLidos);
                 String dadosLidos = new String(dadosBytesLidos);
 
-
             return dadosLidos;
             }
 
@@ -80,7 +79,7 @@ public class OperArquivos {
         }catch (Exception erro){
             u.print("Erro ao Ler.");
         }
-    return "Em Branco\n";
+    return "Em Branco";
     }
 
 

@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.trairas.nig.pim.Act.conf_server;
 import com.trairas.nig.pim.Fragmentos.*;
 
 public class _main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -94,9 +96,11 @@ public class _main extends AppCompatActivity implements NavigationView.OnNavigat
         } else if (id == R.id.nav_slideshow) {
             frag.beginTransaction().replace(R.id.conteudo, new dg_md3()).commit();
         } else if (id == R.id.nav_manage) {
-
+            frag.beginTransaction().replace(R.id.conteudo, new grafico()).commit();
         } else if (id == R.id.nav_share) {
-
+            Intent in = new Intent(_main.this, conf_server.class);
+            startActivity(in);
+            //finish();
         } else if (id == R.id.nav_send) {
 
         }

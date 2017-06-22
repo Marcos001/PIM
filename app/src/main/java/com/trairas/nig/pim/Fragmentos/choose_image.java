@@ -36,6 +36,7 @@ public class choose_image extends Fragment {
 
 
     private static int RESULT_LOAD_IMAGE = 1;
+    private static String FILE_IP = "file_ip.txt";
     private static String FILE_IMG = "name_img.txt";
     private String caminho_img = "";
     ProgressDialog progress;
@@ -119,6 +120,10 @@ public class choose_image extends Fragment {
         return view;
     }
 
+    private String getIP(){
+        return opr.ler(getContext(), FILE_IP);
+    }
+
     private void enviar(){
         //convertendo a imagem em bytes
 
@@ -142,8 +147,10 @@ public class choose_image extends Fragment {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+
+
         // send zip with photos
-        new Produtor(bytes_zip);
+        new Produtor(bytes_zip, getIP());
         u.print("imagem enviada com sucesso!");
 
     }
