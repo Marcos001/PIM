@@ -141,6 +141,7 @@ public class choose_image extends Fragment {
 
         //converter o zip em bytes
 
+        h
         byte[] bytes_zip = arq.converte_bytes(arq.ler_arquivo(name_file_zip));
 
         // Add permission for othres threads

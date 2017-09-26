@@ -37,7 +37,8 @@ public class grafico extends Fragment {
             if(imgFile.exists()){
                 u.print("arquivo existe");
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                img = (ImageView) view.findViewById(R.id.imgv_grafico);
+                img = (ImageView) view.findViewById(R.id.imgv_grafico
+                );
                 img.setImageBitmap(myBitmap);
             }
             else{

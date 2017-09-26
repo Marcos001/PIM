@@ -22,7 +22,7 @@ public class Produtor extends Util {
 
     public Produtor(byte[] fileData, String ip_server){
 
-        final String HOST = System.getProperty("amqp.host", ip_server);
+        final String HOST = System.getProperty("amqp.host", "192.168.0.108"); //
 
         try{
 

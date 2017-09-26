@@ -15,7 +15,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+
 public class splash extends Activity implements Runnable{
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

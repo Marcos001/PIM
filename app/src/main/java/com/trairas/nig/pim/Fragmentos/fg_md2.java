@@ -57,20 +57,7 @@ public class fg_md2 extends Fragment {
         File imgFile_sb = new  File(path_img_sobreposta);
 
 
-        try{
-            if(imgFile_sb.exists()){
-                u.print("arquivo existe");
-                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile_sb.getAbsolutePath());
-                img_sobreposta = (ImageView) view.findViewById(R.id.imgv_sobreposta_otsu);
-                img_sobreposta.setImageBitmap(myBitmap);
-            }
-            else{
-                u.print("imagem otsu.png não existe");
-            }
-        }
-        catch (Exception erro){
-            u.print("Erro ao adicionar a imagem no imageView "+ erro);
-        }
+
 
 
         try{

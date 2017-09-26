@@ -94,7 +94,8 @@ public class dg_md3 extends Fragment {
             if(imgFile.exists()){
                 u.print("arquivo existe");
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                img = (ImageView) view.findViewById(R.id.imgv_seg_kmeans);
+                img = (ImageView) view.findViewById(R.id.imgv_seg_kmeans
+                );
                 img.setImageBitmap(myBitmap);
             }
             else{
