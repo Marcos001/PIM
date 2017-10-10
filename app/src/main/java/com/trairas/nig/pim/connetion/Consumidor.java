@@ -58,14 +58,13 @@ public class Consumidor {
 
                 try{
                     ConnectionFactory factory = new ConnectionFactory();
-                    factory.setHost("192.168.0.108");
+                    factory.setHost("192.168.0.107");
                     factory.setPort(PORT);
                     factory.setUsername("nig");
                     factory.setPassword("nig");
                     factory.setVirtualHost("/");
                     Connection connection = factory.newConnection();
                     Channel channel = connection.createChannel();
-
 
 
                     channel.queueDeclare(QUEUE_NAME, false, false, false, null);

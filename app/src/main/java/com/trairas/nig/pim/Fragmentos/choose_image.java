@@ -136,12 +136,9 @@ public class choose_image extends Fragment {
         String name_file_zip = getContext().getCacheDir()+"/pim_imagem.zip";
 
         zip.compactar("pim_imagem.png", name_file_zip, imagem);
-
         u.print("salvando em : "+name_file_zip);
 
         //converter o zip em bytes
-
-        h
         byte[] bytes_zip = arq.converte_bytes(arq.ler_arquivo(name_file_zip));
 
         // Add permission for othres threads
