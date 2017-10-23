@@ -21,6 +21,7 @@ public class Consumidor {
     DCompactar zip = new DCompactar();
     ProgressDialog progress;
 
+
     public void configDialog(Context contexto){
         progress = new ProgressDialog(contexto);
         progress.setTitle("Aguarde");

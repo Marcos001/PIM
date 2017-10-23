@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">PIM</string>
     <string name="title_activity__main">PIM</string>
+    <string name="title_activity_conf_server">Configurações</string>
+    <string name="title_activity_about">Sobre</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -25,6 +27,11 @@
     <string name="md_cat1">Configurações</string>
     <string name="md_op5">Servidor</string>
     <string name="md_op6">Usuário</string>
+
+    <!-- Class About -->
+    <string name="tx_description">O App PIM é um aplicativo que realiza operações de Processamento
+    Digital de Imagens e Visão Computacional com o objetico de trazer alguma predição de auxílio
+    a quantificação de Imagens Médicas. </string>
 
 
 </resources>

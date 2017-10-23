@@ -26,14 +26,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="._main"
             android:label="@string/title_activity__main"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".Act.conf_server"
-            android:parentActivityName="._main">
-        </activity>
+        <activity
+            android:name=".Act.conf_server"
+            android:label="@string/title_activity_conf_server"
+            android:parentActivityName="._main"/>
+
+        <activity android:name=".about"
+            android:label="@string/title_activity_about"
+            android:parentActivityName="._main"/>
 
     </application>
 

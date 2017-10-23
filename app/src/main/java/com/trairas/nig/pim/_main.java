@@ -76,6 +76,8 @@ public class _main extends AppCompatActivity implements NavigationView.OnNavigat
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            //chamar a tela de sobre
+            startActivity(new Intent(this, about.class));
             return true;
         }
 
