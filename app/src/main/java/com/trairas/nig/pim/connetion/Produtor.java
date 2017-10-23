@@ -22,7 +22,7 @@ public class Produtor extends Util {
 
     public Produtor(byte[] fileData, String ip_server){
 
-        final String HOST = System.getProperty("amqp.host", "192.168.0.107"); //
+        final String HOST = System.getProperty("amqp.host", ip_server); //
 
         try{
 
@@ -49,8 +49,6 @@ public class Produtor extends Util {
         }catch (Exception erro){
             System.out.println("Erro ao instanciar publisher enviando ao cliente >"+HOST+" \n"+erro);
         }
-
-
     }
 
 
@@ -117,8 +115,6 @@ public class Produtor extends Util {
         }catch (Exception erro){
             System.out.println("Erro ao instanciar publisher enviando ao cliente >"+HOST+" \n"+erro);
         }
-
-
     }
 
 

@@ -82,8 +82,6 @@ public class choose_image extends Fragment {
         get_img.setAdapter(opcao_selecao);
 
 
-
-
         imgv_send = (ImageView) view.findViewById(R.id.imgv_send);
 
         //cu = new Consumidor(getContext(), getContext().getCacheDir()+"");
@@ -190,9 +188,6 @@ public class choose_image extends Fragment {
 
             bt_select_send.setEnabled(true);
 
-
-
-
         }
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == Activity.RESULT_OK && null != data) {
@@ -220,10 +215,6 @@ public class choose_image extends Fragment {
             salve_name_img(caminho_img);
 
             bt_select_send.setEnabled(true);
-
-
-
-            //-----------------------------------------------------------------------///////
 
         }
 

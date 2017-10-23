@@ -100,13 +100,12 @@ public class _main extends AppCompatActivity implements NavigationView.OnNavigat
         } else if (id == R.id.nav_manage) {
             frag.beginTransaction().replace(R.id.conteudo, new grafico()).commit();
         } else if (id == R.id.nav_share) {
-            Intent in = new Intent(_main.this, conf_server.class);
-            startActivity(in);
-            //finish();
+            startActivity(new Intent(_main.this, conf_server.class));
         } else if (id == R.id.nav_send) {
-
+              //chama detalhes da conta o usuário
         }
 
+        //manu navigation drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
