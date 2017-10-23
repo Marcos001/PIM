@@ -22,11 +22,11 @@ public class Produtor extends Util {
 
     public Produtor(byte[] fileData, String ip_server){
 
-        final String HOST = System.getProperty("amqp.host", ip_server); //
+        final String HOST = System.getProperty("amqp.host", "192.168.0.115"); //
 
         try{
 
-            print(" configuration connection");
+            print(" configurando conexão ");
             ConnectionFactory factory = new ConnectionFactory();
             factory.setHost(HOST);
             factory.setPort(PORT);
@@ -36,12 +36,12 @@ public class Produtor extends Util {
             connection = factory.newConnection();
             Channel channel = connection.createChannel();
 
-            print(" sending message > ");
+            print(" enviano mensagem > ");
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             channel.basicPublish("", QUEUE_NAME, null, fileData);
-            System.out.println(" [x] Sent file ");
+            System.out.println(" [x] Arquivo Enviado de Publish()  ");
 
-            print("closing connection > ");
+            print(" fechando conexão > ");
             channel.close();
             connection.close();
 
@@ -91,7 +91,7 @@ public class Produtor extends Util {
     public void Produtor_send_message(String message){
 
 
-        String HOST = System.getProperty("amqp.host", "192.168.0.106");
+        String HOST = System.getProperty("amqp.host", "192.168.0.115");
 
         try{
 

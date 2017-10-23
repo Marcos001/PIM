@@ -129,6 +129,28 @@ public class choose_image extends Fragment {
 
         u.print("Caminho em enviar = "+caminho_img);
 
+        //obtem um array de bytes da imagem selecionada
+        byte[] imagem_bytes = arq.converte_bytes(arq.ler_arquivo(caminho_img));
+
+        // Add permission for othres threads - abrir para criar uma thread de instancia de rede
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        // send zip with photos
+        new Produtor(imagem_bytes, getIP());
+        u.print("imagem enviada com sucesso!");
+
+    }
+
+
+    private void _enviar(){
+        //convertendo a imagem em bytes
+
+        cu.configDialog(getContext());
+
+        u.print("Caminho em enviar = "+caminho_img);
+
+        //obtem um array de bytes da imagem selecionada
         byte[] imagem = arq.converte_bytes(arq.ler_arquivo(caminho_img));
 
         String name_file_zip = getContext().getCacheDir()+"/pim_imagem.zip";
@@ -150,7 +172,6 @@ public class choose_image extends Fragment {
         u.print("imagem enviada com sucesso!");
 
     }
-
 
 
 
