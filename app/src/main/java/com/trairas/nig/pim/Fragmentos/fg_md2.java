@@ -75,11 +75,28 @@ public class fg_md2 extends Fragment {
             u.print("Erro ao adicionar a imagem no imageView "+ erro);
         }
 
+
+        try{
+            if(imgFile_sb.exists()){
+                u.print("arquivo existe");
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile_sb.getAbsolutePath());
+                img = (ImageView) view.findViewById(R.id.imgv_seg_otsu);
+                img.setImageBitmap(myBitmap);
+            }
+            else{
+                u.print("imagem otsu segmentada otsu.png não existe");
+            }
+        }
+        catch (Exception erro){
+            u.print("Erro ao adicionar a imagem no imageView "+ erro);
+        }
+
+
         try{
             if(imgFile.exists()){
                 u.print("arquivo existe");
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                img = (ImageView) view.findViewById(R.id.imgv_seg_otsu);
+                img = (ImageView) view.findViewById(R.id.imgv_sobreposta_otsu);
                 img.setImageBitmap(myBitmap);
             }
             else{

@@ -7,12 +7,15 @@ package com.trairas.nig.pim.connetion;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.rabbitmq.client.*;
 import com.trairas.nig.pim.Util.Arquivo;
 import com.trairas.nig.pim.Util.DCompactar;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Consumidor {
@@ -43,6 +46,7 @@ public class Consumidor {
         }
         return retorno;
     }
+
 
 
 
@@ -81,6 +85,8 @@ public class Consumidor {
                                 throws IOException {
 
 
+                            //arq.criar_arquivo(Environment.getExternalStorageDirectory()+"/otsu.png", body);
+
 
                             //String message = new String(body, "UTF-8");
                             arq.criar_arquivo(atividade.getCacheDir()+"/tmp.zip", body);
@@ -88,6 +94,7 @@ public class Consumidor {
                             zip.descompactar(atividade.getCacheDir()+"/tmp.zip", path_saida);
 
                             System.out.println(" [x] Received arquivo zip ");
+
                             if(parar_progresso()){
                                 main.runOnUiThread(new Runnable() {
                                     @Override
@@ -100,7 +107,6 @@ public class Consumidor {
                             }
 
                             System.out.println("Obtidos os dados");
-
 
                         }
                     };
