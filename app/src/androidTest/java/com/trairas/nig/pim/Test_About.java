@@ -26,9 +26,13 @@ public class Test_About  extends ActivityInstrumentationTestCase2<about> {
     }
 
     public void testDevePossuirUmTextViewDescription() throws Exception {
-
-        assertNotNull(activity);
+        System.out.println("checando testView");
         assertNotNull(texto_descricao);
+    }
+
+    public void testchecar_instancia_activity() throws Exception {
+        System.out.println("checando instancia activity");
+        assertNotNull(activity);
     }
 
 }
